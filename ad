@@ -1,0 +1,66 @@
+[33mcommit 97d14011e7a9d3ec20e396f016da99d0c3146e34[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;31mheroku/main[m[33m)[m
+Author: Mansur <pcjoker04@gmail.com>
+Date:   Mon Sep 18 19:35:32 2023 +0500
+
+    with backend seperatd
+
+[1mdiff --git a/OnlineStore/__pycache__/settings.cpython-310.pyc b/OnlineStore/__pycache__/settings.cpython-310.pyc[m
+[1mindex f05d9423..9ed39304 100644[m
+Binary files a/OnlineStore/__pycache__/settings.cpython-310.pyc and b/OnlineStore/__pycache__/settings.cpython-310.pyc differ
+[1mdiff --git a/OnlineStore/__pycache__/urls.cpython-310.pyc b/OnlineStore/__pycache__/urls.cpython-310.pyc[m
+[1mindex 71fb4aef..6ef7cde3 100644[m
+Binary files a/OnlineStore/__pycache__/urls.cpython-310.pyc and b/OnlineStore/__pycache__/urls.cpython-310.pyc differ
+[1mdiff --git a/OnlineStore/urls.py b/OnlineStore/urls.py[m
+[1mindex 7b31e66e..a82602b3 100644[m
+[1m--- a/OnlineStore/urls.py[m
+[1m+++ b/OnlineStore/urls.py[m
+[36m@@ -5,34 +5,37 @@[m [mfrom django.shortcuts import render[m
+ from django.views.generic import RedirectView[m
+ from django.core.files.storage import default_storage[m
+ from ProductsBase.models import IconsForFrontend[m
+[32m+[m[32mfrom django.http import JsonResponse[m
+[32m+[m
+ [m
+[31m-def CentralCore(request, *args, **kwargs):[m
+[31m-    return render(request, 'index.html')[m
+ [m
+ urlpatterns = [[m
+[32m+[m
+     path('admin/', admin.site.urls),[m
+     path('GetProducts/', ProductCentre.as_view()),[m
+     path('GetUsersCardProducts/', UsersCartProducts.as_view()),[m
+     path('AdjustCartProducts/<int:actionType>/<int:product_ID>/', UsersCartProducts.as_view()),[m
+     path('', RedirectView.as_view(pattern_name='home'), name='catch-all'),[m
+[31m-    path('Main/', CentralCore),[m
+[31m-    path('Main/<str:data>/', CentralCore),[m
+[31m-    path('login/', CentralCore),[m
+     path('GetProducts/<str:SpecialType>/', GetProducts.as_view()),[m
+     path('GetFilteredData/<str:KeyWord>/', GetFilteredData.as_view()),[m
+     path('GetUsersCardProducts/', UsersCartProducts.as_view()),[m
+     path('SignUp/', Authentication.as_view()),[m
+     path('SignIn/', LoginHandler.as_view()),[m
+[31m-    path('AdminChatBox/', CentralCore),[m
+[31m-    path('AdminChatBox/<str:Id_Parameter>/', CentralCore),[m
+     path('getSupportClients/', GetSupportClients),[m
+     path('GetClientMessages/<int:ClientID>', GetClientMessages),[m
+     path('Get_UserInfo/', GetClient_Profile_info),[m
+[31m-    path('Payment/', CentralCore),[m
+     path('GetIcon/<str:code_name>/', IconsManager),[m
+     path('GetIcon/<str:code_name>/<str:ForMainPage>/', IconsManager),[m
+[31m-    path('Home/', CentralCore, name='home'),[m
+[31m-    path('Contact/', CentralCore),[m
+     path('Authentication_Check/', Check_User_Authenticity),[m
+[31m-    re_path(r'^.*/$', RedirectView.as_view(pattern_name='home'), name='catch-all'),[m
+[32m+[m
+[32m+[m[32m    # path('Main/', CentralCore),[m
+[32m+[m[32m    # path('Main/<str:data>/', CentralCore),[m
+[32m+[m[32m    # path('login/', CentralCore),[m
+[32m+[m[32m    # path('AdminChatBox/', CentralCore),[m
+[32m+[m[32m    # path('AdminChatBox/<str:Id_Parameter>/', CentralCore),[m
+[32m+[m[32m    # path('Payment/', CentralCore),[m
+[32m+[m[32m    # path('Home/', CentralCore, name='home'),[m
+[32m+[m[32m    # path('Contact/', CentralCore),[m
+[32m+[m[32m    # re_path(r'^.*/$', RedirectView.as_view(pattern_name='home'), name='catch-all'),[m
+[32m+[m
+ ][m
+\ No newline at end of file[m
