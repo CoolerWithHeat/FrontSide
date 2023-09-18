@@ -18,6 +18,7 @@ export function LoadingWindow(){
 }
 
 function AccountLoginRegisterform(){
+    
     const LoginButton = React.useRef() 
     const SignUpButton = React.useRef()
     var [LoginWindow, Update_openedWindow] = React.useState(false)
@@ -27,6 +28,7 @@ function AccountLoginRegisterform(){
         let obj = await import('./css_files/loginForm.css');
     }
 
+    
     getStyle()
 
     var [RegisterCredentials, UpdateRegisterCredentials] = React.useState({email: '', password1: '', password2: ''})
@@ -77,12 +79,12 @@ function AccountLoginRegisterform(){
                 console.error(error)
             });
 
-      }, []);
+    }, []);
 
-      React.useEffect(Main=>{
+    React.useEffect(Main=>{
 
         console.log(authenticationTriggered)
-      })
+    })
 
     const StartOauth2Authentication = (AuthType) => {
         localStorage.setItem('authenticationTriggered', true)
@@ -93,7 +95,7 @@ function AccountLoginRegisterform(){
             const facebookProvider = new FacebookAuthProvider();
             signInWithRedirect(auth, facebookProvider);
         }
-          
+        
         
     }
 
@@ -199,7 +201,7 @@ function AccountLoginRegisterform(){
                 }
                     
 
-       
+    
             }
             
             ManageRequest()
@@ -275,7 +277,7 @@ function AccountLoginRegisterform(){
                 }
             }
 
-          };
+        };
         document.addEventListener('keydown', handleKeyPress);
     }, [LoginWindow])
 
@@ -324,7 +326,7 @@ function AccountLoginRegisterform(){
                     
                                 <button className="btn btn-light" onClick={()=>StartOauth2Authentication("google")} id="AuthButton-login"><img id="ProviderButtonImage" src="https://cdn-icons-png.flaticon.com/512/2504/2504739.png"/></button>
                                 <button className="btn btn-light" onClick={()=>StartOauth2Authentication("facebook")} id="AuthButton-login"><img id="ProviderButtonImage" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1024px-Facebook_Logo_%282019%29.png"/></button>
- 
+
                             </div>
                     </div>
             </div>
