@@ -7,7 +7,6 @@ import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 
-
 var host;
 export const Get_Static_Url = (filename)=>{
     host = window.location.host
