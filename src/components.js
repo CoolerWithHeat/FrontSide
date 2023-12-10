@@ -16,19 +16,13 @@ export const Get_Static_Url = (filename)=>{
 export function GetHost(WithProtocol=true){
     
     if (WithProtocol){
-        const url = window.location.protocol + '//' + window.location.host
-        if (url === "http://localhost:3000")
-            return 'http://localhost:8000' 
-        else    
-            return url
+        const url = 'http://3.88.107.150';
+        return url;
     }
 
     else{
-        const url = window.location.host
-        if (url === "localhost:3000")
-            return 'localhost:8000' 
-        else    
-            return url
+        const url = '3.88.107.150';
+        return url;
     }
     
 }
@@ -993,7 +987,7 @@ export function StaffClientsMonitor(ComponentProperties){
 
     var SocketReference = React.useRef(null)
     const chatBoxRef = React.useRef(null);
-    const SocketProtocol = window.location.protocol == "https:" ? 'wss://' : 'ws://'
+    const SocketProtocol = 'ws://'
     const dispatch = useDispatch()
     const MessagesPath = SupportStaffClients.actions.UpdateMessages
     const Add_To_ExistingMessages = SupportStaffClients.actions.UpdateExistingMessages    
@@ -1169,7 +1163,7 @@ export function AdminChatBox(WindowProperties){
 
         GetStaffClients()
         
-        const SocketProtocol = window.location.protocol == "https:" ? 'wss://' : 'ws://'
+        const SocketProtocol = window.location.protocol == 'ws://'
         const socket = new ReconnectingWebSocket(SocketProtocol+GetHost(false)+'/ClientsMonitor/' + `token=${localStorage.getItem('WebKey')}`)
     
         socket.onmessage = (WebsocketResponse) => {
@@ -1525,7 +1519,7 @@ export function SideBarAdvanced() {
         const Messages = useSelector(Main=>Main.SupportStaff_Clients.AllMessages)
         const AddToExistingBase = SupportStaffClients.actions.UpdateExistingMessages
         const dispatch = useDispatch()
-        const SocketProtocol = window.location.protocol === "https:" ? 'wss://' : 'ws://'
+        const SocketProtocol = 'ws://'
         const userdataField = React.useRef()
         const SendButton = React.useRef()
         const responseWindowRef = React.useRef(null);
